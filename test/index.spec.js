@@ -10,6 +10,7 @@ describe('createSwitchAction', () => {
   const SUB = 'SUB';
   const OTHER = 'OTHER';
   const INC = 'INC';
+  const RETURN_THIS = 'RETURN_THIS';
 
   function addReducer(state, {amount}) {
     return state + amount;
@@ -23,10 +24,15 @@ describe('createSwitchAction', () => {
     return state + 1;
   }
 
+  function returnThisReducer() {
+    return this;
+  }
+
   const switchAction = createSwitchAction({
     [ADD]: addReducer,
     [SUB]: subReducer,
     [INC]: incReducer,
+    [RETURN_THIS]: returnThisReducer,
   });
 
   it('should call a reducer according to an action type', () => {
@@ -65,5 +71,13 @@ describe('createSwitchAction', () => {
     };
 
     expect(switchAction(5, incAction)).toBe(6);
+  });
+
+  it('should retain the `this` context', () => {
+    const returnThisAction = {
+      type: RETURN_THIS,
+    };
+
+    expect(switchAction.call('thisContext', 5, returnThisAction)).toBe('thisContext');
   });
 });
