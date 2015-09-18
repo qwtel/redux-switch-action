@@ -18,6 +18,6 @@ function addReducer(state, payload) {
 }
 
 function subReducer(state, payload) {
-  return state + payload.amount;
+  return state - payload.amount;
 }
 ```
