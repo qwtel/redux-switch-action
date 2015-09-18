@@ -80,4 +80,16 @@ describe('createSwitchAction', () => {
 
     expect(switchAction.call('thisContext', 5, returnThisAction)).toBe('thisContext');
   });
+
+  it('should pass the other FSA properties via `this`', () => {
+    const returnErrorAction = {
+      type: RETURN_THIS,
+      meta: 'meta',
+      error: true,
+    };
+
+    expect(switchAction.call({my: 'this'}, 5, returnErrorAction).error).toBe(true);
+    expect(switchAction.call({my: 'this'}, 5, returnErrorAction).meta).toBe('meta');
+    expect(switchAction.call({my: 'this'}, 5, returnErrorAction).my).toBe('this');
+  });
 });

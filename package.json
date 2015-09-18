@@ -1,6 +1,6 @@
 {
   "name": "redux-switch-action",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Slightly more concise reducer switching",
   "main": "lib/index.js",
   "scripts": {
