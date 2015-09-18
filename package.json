@@ -1,7 +1,7 @@
 {
   "name": "redux-switch-action",
-  "version": "1.0.1",
-  "description": "",
+  "version": "1.0.2",
+  "description": "Slightly more concise reducer switching",
   "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf lib dist",
