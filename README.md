@@ -13,11 +13,11 @@ export function reducer(state = 0, action) {
   return switchAction(state, action);
 }
 
-function addReducer(state, payload) {
+function addReducer(state, {payload}) {
   return state + payload.amount;
 }
 
-function subReducer(state, payload) {
+function subReducer(state, {payload}) {
   return state - payload.amount;
 }
 ```

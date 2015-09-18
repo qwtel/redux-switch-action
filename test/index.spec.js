@@ -12,12 +12,12 @@ describe('createSwitchAction', () => {
   const INC = 'INC';
   const RETURN_THIS = 'RETURN_THIS';
 
-  function addReducer(state, {amount}) {
-    return state + amount;
+  function addReducer(state, {payload}) {
+    return state + payload.amount;
   }
 
-  function subReducer(state, {amount}) {
-    return state - amount;
+  function subReducer(state, {payload}) {
+    return state - payload.amount;
   }
 
   function incReducer(state) {
@@ -79,17 +79,5 @@ describe('createSwitchAction', () => {
     };
 
     expect(switchAction.call('thisContext', 5, returnThisAction)).toBe('thisContext');
-  });
-
-  it('should pass the other FSA properties via `this`', () => {
-    const returnErrorAction = {
-      type: RETURN_THIS,
-      meta: 'meta',
-      error: true,
-    };
-
-    expect(switchAction.call({my: 'this'}, 5, returnErrorAction).error).toBe(true);
-    expect(switchAction.call({my: 'this'}, 5, returnErrorAction).meta).toBe('meta');
-    expect(switchAction.call({my: 'this'}, 5, returnErrorAction).my).toBe('this');
   });
 });
